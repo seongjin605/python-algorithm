@@ -4,6 +4,9 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from typing import List
+
+
 def levelOrder(self, root: TreeNode) -> List[List[int]]:
     if root == None: return []
     treeNodes, result = [], []
