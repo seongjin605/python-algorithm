@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/longest-palindromic-substring/
 def longestPalindrome(s: str) -> str:
     # 팰린드롬 판별 및 투 포인터 확장
     def expand(left: int, right: int) -> str:

@@ -6,7 +6,7 @@
 #         self.right = right
 from typing import List
 
-
+# https://leetcode.com/problems/binary-tree-level-order-traversal/
 def levelOrder(self, root: TreeNode) -> List[List[int]]:
     if root == None: return []
     treeNodes, result = [], []

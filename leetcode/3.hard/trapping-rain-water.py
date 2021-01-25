@@ -1,6 +1,6 @@
 from typing import List
 
-
+# https://leetcode.com/problems/trapping-rain-water/
 class Solution:
     def trap(self, height: List[int]) -> int:
         left, right = 0, len( height ) - 1
