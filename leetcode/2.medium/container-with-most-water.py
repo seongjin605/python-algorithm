@@ -1,29 +1,21 @@
 from typing import List
 
 # https://leetcode.com/problems/container-with-most-water/
-class Solution:
-    def maxArea(self, height: List[int]) -> int:
-        left, right = 0, len( height ) - 1
-        left_loc, right_loc = 0, 0
-        left_max, right_max = height[left], height[right]
-        result = 0
+'''
+length: 오른쪽 x좌표 - 왼쪽 x좌표
+width: 왼쪽 y좌표 또는 오른쪽 y좌표의 최소값
 
-        while left <= right:
-            if left_max < right_max:
-                left_max = max( left_max, height[left] )
-                left += 1
-                left_loc += 1
-            else:
-                right_max = max( right_max, height[right] )
-                right -= 1
-                right_loc += 1
+최대 너비 공식: width * length 
+'''
+def maxArea(self, height: List[int]) -> int:
+    left, right = 0, len( height ) - 1
+    max_sum = 0
 
-        # width = min()
-        print( 'left_max:', left_max )
-        print( 'right_max:', right_max )
+    while left < right:
+        max_sum = max( max_sum, min( height[left], height[right] ) * (right - left) )
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
 
-        print( 'right:', right )
-        print( 'left:', left )
-
-        return result
-
+    return max_sum
