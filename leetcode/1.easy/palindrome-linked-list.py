@@ -4,27 +4,26 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 # https://leetcode.com/problems/palindrome-linked-list/submissions/
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
         if not head: return True
 
-        walker = head
-        runner = head
-        count = 0
+        nodes = []
+        nodes.append( head )
 
-        while runner != None:
-            count += 1
-            runner = runner.next
-            if runner == None and count == 1: return True
-            if runner != None:
-                runner = runner.next
-                print( 'runner: ', runner )
-                walker = walker.next
-                print( 'walker: ', walker )
-                if runner and walker and runner.val == walker.val:
-                    return True
-                else:
-                    continue
-        return False
+        result = []
+        while len( nodes ) > 0:
+            node = nodes.pop( 0 )
+            result.append( node.val )
+            if node.next:
+                nodes.append( node.next )
 
+        print( result )
+
+        for i, val in enumerate( result ):
+            if val != result[len( result ) - 1 - i]:
+                return False
+
+        return True
