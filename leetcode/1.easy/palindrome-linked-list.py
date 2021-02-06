@@ -25,5 +25,6 @@ class Solution:
         for i, val in enumerate( result ):
             if val != result[len( result ) - 1 - i]:
                 return False
-
         return True
+
+
