@@ -8,6 +8,8 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution:
     def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root: return []
@@ -17,21 +19,26 @@ class Solution:
         check = False  # False 왼쪽부터 뺌, True: 오른쪽부터 뺌
 
         while len( tree_nodes ) > 0:
-            current = []
+            # current = []
+            current = collections.deque( [] )
             tree_size = len( tree_nodes )
             for i in range( tree_size ):
                 node = None
+                node = tree_nodes.popleft()
+
                 if check == True:
-                    node = tree_nodes.pop()
+                    # current.insert(0, node.val)
+                    current.appendleft( node.val )
                 else:
-                    node = tree_nodes.popleft()
-                current.append( node.val )
+                    current.append( node.val )
+                    # current.append(node.val)
+
                 if node.left:
                     tree_nodes.append( node.left )
                 if node.right:
                     tree_nodes.append( node.right )
-            check = not check
             result.append( current )
+            check = not check
 
         return result
 
