@@ -5,23 +5,12 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def largestValues(self, root: TreeNode) -> List[int]:
-        # nodes = [root]
-        nodes = collections.deque( [root] )
-        result = []
-
-        while len( nodes ) > 0:
-            node_size = len( nodes )
-            current = []
-            for n in range( node_size ):
-                node = nodes.popleft()
-                if node:
-                    if node.left:
-                        nodes.append( node.left )
-                    if node.right:
-                        nodes.append( node.right )
-                    current.append( node.val )
-            if current:
-                result.append( max( current ) )
-        return result
-
+    def mergeTrees(self, root1: TreeNode, root2: TreeNode) -> TreeNode:
+        if not root1:
+            return root2
+        if not root2:
+            return root1
+        root1.val = root1.val + root2.val
+        root1.left = self.mergeTrees(root1.left, root2.left)
+        root1.right = self.mergeTrees(root1.right, root2.right)
+        return root1
